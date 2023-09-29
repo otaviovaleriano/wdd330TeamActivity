@@ -22,7 +22,28 @@ async function addToCartHandler(e) {
   addProductToCart(product);
 }
 
+// Setting Product Detail Page Dynamically
+async function GetProductDetails(productID){
+  const product = await findProductById(productID);
+  document.getElementById("ProductName").innerHTML = product.Name;
+  document.getElementById("NameWithoutBrand").innerHTML = product.NameWithoutBrand;
+  document.getElementById("Image").src = product.Image;
+  document.getElementById("Image").alt = product.Name;
+  document.getElementById("ListPrice").innerHTML = product.ListPrice;
+  document.getElementById("ColorName").innerHTML = product.Colors[0].ColorName;
+  document.getElementById("DescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
+  document.getElementById("addToCart").setAttribute("data-id",String(productID));
+}
+
 // add listener to Add to Cart button
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
+
+document.addEventListener("DOMContentLoaded", function(){
+  const urlParams = new URLSearchParams(window.location.search);
+  let productID = urlParams.get('productID');
+  GetProductDetails(productID)
+});
+
+// Fill the HTML for elements on the screen
