@@ -1,14 +1,14 @@
 import { getLocalStorage } from "./utils.mjs";
 
-// (SAI)Assuming you have calculated the total amount and want to show it
-// and the Checkout button:
-const cartFooter = document.querySelector('.cart-footer');
-cartFooter.classList.remove('hide');
+// // (SAI)Assuming you have calculated the total amount and want to show it
+// // and the Checkout button:
+//  const cartFooter = document.querySelector('.cart-footer');
+//  cartFooter.classList.remove('hide');
 
 // (SAI) Function to check if there are items in the cart
 function checkCartItems() {
   // Check if there are items in local storage
-  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartItems = JSON.parse(localStorage.getItem('so-cart')) || [];
 
   if (cartItems.length > 0) {
     // There are items in the cart, show the cart footer
@@ -17,8 +17,11 @@ function checkCartItems() {
 
     // Calculate the total amount
     let totalAmount = 0;
-    for (const item of cartItems) {
-      totalAmount += item.price * item.quantity;
+
+    for (let i = 0; i < cartItems.length; i++) {
+      const product = cartItems[i]
+      console.log(product.FinalPrice); // Access the FinalPrice property
+      totalAmount += product.FinalPrice;
     }
 
     // Create HTML to display the total
