@@ -15,7 +15,9 @@
 {:then products}
 <ul class="product-list">
 {#each products as product}
-<li class="product-card"><ProductSummary {product} /></li>
+  {#if product.Id == "880RR" || product.Id == "985RF" || product.Id == "985PR" || product.Id == "344YJ"}
+  <li class="product-card"><ProductSummary {product} /></li>
+  {/if}
 {/each}
 </ul> 
 {/await} 
