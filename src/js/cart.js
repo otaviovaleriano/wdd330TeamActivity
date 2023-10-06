@@ -32,4 +32,19 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+let itemCount = 0;
+
+function updateCartItemCount() {
+  const itemCountElement = document.getElementById('item-count');
+  itemCountElement.textContent = itemCount;
+  //get total of items in local storage
+  localStorage.setItem('cartItemCount', itemCount);
+}
+// get the local storage count when the page loads
+document.addEventListener("DOMContentLoaded", function () {
+  // item count from local storage or 0
+  itemCount = parseInt(localStorage.getItem('cartItemCount')) || 0;
+  updateCartItemCount();
+});
+
 renderCartContents();
