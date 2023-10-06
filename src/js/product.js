@@ -32,7 +32,7 @@ async function addToCartHandler(e) {
 // Setting Product Detail Page Dynamically
 async function GetProductDetails(productID){
   const product = await findProductById(productID);
-  const discountValue = await calcDiscount(product);
+  // const discountValue = await calcDiscount(product);
   document.getElementById("ProductName").innerHTML = product.Name;
   document.getElementById("NameWithoutBrand").innerHTML = product.NameWithoutBrand;
   document.getElementById("Image").src = product.Image;
@@ -41,17 +41,17 @@ async function GetProductDetails(productID){
   document.getElementById("ColorName").innerHTML = product.Colors[0].ColorName;
   document.getElementById("DescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
   document.getElementById("addToCart").setAttribute("data-id",String(productID));
-  document.getElementById("RetailPrice").innerHTML = product.SuggestedRetailPrice;  
-  document.getElementById("Discount").innerHTML = discountValue.toFixed(2);
+  // document.getElementById("RetailPrice").innerHTML = product.SuggestedRetailPrice;  
+  // document.getElementById("Discount").innerHTML = discountValue.toFixed(2);
 
 }
 
-async function calcDiscount(product){
-  let retail = product.SuggestedRetailPrice;
-  let finalPrice = product.ListPrice;
-  let discountValue = 100 - (finalPrice / retail * 100);
-  return discountValue;
-}
+// async function calcDiscount(product){
+//   let retail = product.SuggestedRetailPrice;
+//   let finalPrice = product.ListPrice;
+//   let discountValue = 100 - (finalPrice / retail * 100);
+//   return discountValue;
+// }
 
 // add listener to Add to Cart button
 document
