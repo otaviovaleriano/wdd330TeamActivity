@@ -1,0 +1,1 @@
+<p>My new product list componenent!</p>
