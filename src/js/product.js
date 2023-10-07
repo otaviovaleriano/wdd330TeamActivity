@@ -22,12 +22,21 @@ function addProductToCart(product) {
 
   // Update the cart item count and local storage
   updateCartItemCount();
+
+  playCartAnimation();
 }
 // add to cart button event handler
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
- }
+}
+
+// Adds the addtocart animation to the cart icon then removes it after 1 second
+async function playCartAnimation() {
+  const cart = document.getElementById('cart')
+  cart.classList.add('AddToCartAnimation');
+  await setTimeout(() => { cart.classList.remove('AddToCartAnimation'); }, 1000);
+}
 
 // Setting Product Detail Page Dynamically
 async function GetProductDetails(productID){
