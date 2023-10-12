@@ -9,10 +9,12 @@ function addProductToCart(product) {
   var tempCart = getLocalStorage("so-cart");
 
   // If there is nothing in local storage then make tempCart an array
-  if (tempCart === null){tempCart = [];}
+  if (tempCart === null) {
+    tempCart = [];
+  }
 
   // Add the new product to the array
-  tempCart.push(product)
+  tempCart.push(product);
 
   // Set the Local Storage to the new array
   setLocalStorage("so-cart", tempCart);
@@ -33,62 +35,73 @@ async function addToCartHandler(e) {
 
 // Adds the addtocart animation to the cart icon then removes it after 1 second
 async function playCartAnimation() {
-  const cart = document.getElementById('cart')
-  cart.classList.add('AddToCartAnimation');
-  await setTimeout(() => { cart.classList.remove('AddToCartAnimation'); }, 1000);
+  const cart = document.getElementById("cart");
+  cart.classList.add("AddToCartAnimation");
+  await setTimeout(() => {
+    cart.classList.remove("AddToCartAnimation");
+  }, 1000);
 }
 
 // Setting Product Detail Page Dynamically
-async function GetProductDetails(productID){
+async function GetProductDetails(productID) {
   const product = await findProductById(productID);
-  // const discountValue = await calcDiscount(product);
-  document.getElementById("ProductName").innerHTML = product.Name;
-  document.getElementById("NameWithoutBrand").innerHTML = product.NameWithoutBrand;
-  document.getElementById("Image").src = product.Image;
-  document.getElementById("Image").alt = product.Name;
-  document.getElementById("ListPrice").innerHTML = product.ListPrice;
-  document.getElementById("ColorName").innerHTML = product.Colors[0].ColorName;
-  document.getElementById("DescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
-  document.getElementById("addToCart").setAttribute("data-id",String(productID));
-  // document.getElementById("RetailPrice").innerHTML = product.SuggestedRetailPrice;  
-  // document.getElementById("Discount").innerHTML = discountValue.toFixed(2);
-
+  // This will run if the product is found
+  if (product != undefined) {
+    document.getElementById("ProductName").innerHTML = product.Name;
+    document.getElementById("NameWithoutBrand").innerHTML =
+      product.NameWithoutBrand;
+    document.getElementById("Image").src = product.Image;
+    document.getElementById("Image").alt = product.Name;
+    document.getElementById("ListPrice").innerHTML = product.ListPrice;
+    document.getElementById("ColorName").innerHTML =
+      product.Colors[0].ColorName;
+    document.getElementById("DescriptionHtmlSimple").innerHTML =
+      product.DescriptionHtmlSimple;
+    document
+      .getElementById("addToCart")
+      .setAttribute("data-id", String(productID));
+    //This will run if product is not found
+  } else {
+    document.getElementById("product-section").innerHTML = `
+      <h3>Product Not Found</h3>
+      <img src="../images/sleeping_employee.png" alt="sleeping_employee" />
+      <a href="../index.html" class="product-detail__add">
+        <button>Home Page</button>
+      </a>`;
+    document
+      .getElementById("product-section")
+      .classList.add("product-not-found");
+    document
+      .getElementById("product-section")
+      .classList.remove("product-detail");
+  }
 }
-
-// async function calcDiscount(product){
-//   let retail = product.SuggestedRetailPrice;
-//   let finalPrice = product.ListPrice;
-//   let discountValue = 100 - (finalPrice / retail * 100);
-//   return discountValue;
-// }
 
 // add listener to Add to Cart button
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
-  let productID = urlParams.get('productID');
-  GetProductDetails(productID)
+  let productID = urlParams.get("productID");
+  GetProductDetails(productID);
 });
-
 
 // cart number of itens
 let itemCount = 0;
 
 function updateCartItemCount() {
-  const itemCountElement = document.getElementById('item-count');
+  const itemCountElement = document.getElementById("item-count");
   itemCountElement.textContent = itemCount;
   //get total of items in local storage
-  localStorage.setItem('cartItemCount', itemCount);
+  localStorage.setItem("cartItemCount", itemCount);
 }
 // get the local storage count when the page loads
 document.addEventListener("DOMContentLoaded", function () {
   // item count from local storage or 0
-  itemCount = parseInt(localStorage.getItem('cartItemCount')) || 0;
+  itemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
   updateCartItemCount();
 });
-
 
 // Fill the HTML for elements on the screen

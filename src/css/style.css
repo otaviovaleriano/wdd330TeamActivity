@@ -115,7 +115,7 @@ button {
   position: absolute;
   top: 10px;
   right: -5px;
-  background-color: #E6B281;
+  background-color: #e6b281;
   color: black;
   border-radius: 50%;
   padding: 3px 6px;
@@ -230,6 +230,34 @@ button {
   background-color: #cc0000;
 }
 
+/* Product Not found */
+
+.product-not-found h3 {
+  color: #cc0000;
+  text-align: center;
+}
+.product-not-found img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-bottom: 20px;
+  border: #cc0000 solid 2px;
+}
+
+.product-not-found button {
+  margin-bottom: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-not-found button:hover {
+  transform: scale(1.1);
+}
+
+.product-not-found a {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -259,9 +287,19 @@ footer {
 }
 
 @keyframes CartAnimation {
-  0% {transform: scale(1);}
-  10% {transform: scale(.6);}
-  50% {transform: scale(1.2);}
-  70% {transform: scale(.6);}
-  100% {transform: scale(1);}
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
