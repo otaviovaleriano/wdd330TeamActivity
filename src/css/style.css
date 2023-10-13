@@ -111,7 +111,7 @@ button {
 }
 
 /* Quantity of Items in the cart */
-#item-count {
+#cart-count {
   position: absolute;
   top: 10px;
   right: -5px;
@@ -174,19 +174,19 @@ button {
   grid-template-columns: 1fr 1fr;
 }
 
-#retail-price{
+#retail-price {
   text-decoration: line-through;
   font-size: 18px;
   color: #cc000062;
   border: 1px #303030;
   max-width: fit-content;
   max-height: 40%;
- }
+}
 
-.discount-percentage{
+.discount-percentage {
   font-size: 22px;
   margin-top: 10px;
-  color:red;
+  color: red;
 }
 
 #ListPrice {
