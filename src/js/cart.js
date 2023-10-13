@@ -1,46 +1,41 @@
 import { getLocalStorage } from "./utils.mjs";
 import { setLocalStorage } from "./utils.mjs";
-
-// // (SAI)Assuming you have calculated the total amount and want to show it
-// // and the Checkout button:
-//  const cartFooter = document.querySelector('.cart-footer');
-//  cartFooter.classList.remove('hide');
+import { renderHeaderFooter } from "./utils.mjs";
 
 // (SAI) Function to check if there are items in the cart
 function checkCartItems() {
   // Check if there are items in local storage
-  const cartItems = JSON.parse(localStorage.getItem('so-cart')) || [];
+  const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
 
   if (cartItems.length > 0) {
     // There are items in the cart, show the cart footer
-    const cartFooter = document.querySelector('.cart-footer');
-    cartFooter.classList.remove('hide');
+    const cartFooter = document.querySelector(".cart-footer");
+    cartFooter.classList.remove("hide");
 
     // Calculate the total amount
     let totalAmount = 0;
 
     for (let i = 0; i < cartItems.length; i++) {
-      const product = cartItems[i]
+      const product = cartItems[i];
       console.log(product.FinalPrice); // Access the FinalPrice property
       totalAmount += product.FinalPrice;
     }
 
     // Create HTML to display the total
-    const totalHTML = document.createElement('p');
+    const totalHTML = document.createElement("p");
     totalHTML.textContent = `Total: $${totalAmount.toFixed(2)}`;
-    totalHTML.classList.add('cart-total');
+    totalHTML.classList.add("cart-total");
 
     // Insert the total HTML into the cart footer element
     cartFooter.appendChild(totalHTML);
   } else {
     // There are no items in the cart, you can perform other actions
-    console.log('The cart is empty.');
+    console.log("The cart is empty.");
   }
 }
 
 // Call the function when the cart page loads
-window.addEventListener('load', checkCartItems);
-
+window.addEventListener("load", checkCartItems);
 
 function renderCartContents() {
   //OS - cart.html error handling
@@ -76,21 +71,6 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-let itemCount = 0;
-
-function updateCartItemCount() {
-  const itemCountElement = document.getElementById('item-count');
-  itemCountElement.textContent = itemCount;
-  //get total of items in local storage
-  localStorage.setItem('cartItemCount', itemCount);
-}
-// get the local storage count when the page loads
-document.addEventListener("DOMContentLoaded", function () {
-  // item count from local storage or 0
-  itemCount = parseInt(localStorage.getItem('cartItemCount')) || 0;
-  updateCartItemCount();
-});
-
 document
   .querySelector(".product-list")
   .addEventListener("click", function (event) {
@@ -112,9 +92,11 @@ document
       // OS - updating itemCount in the cart based on local storage:
       itemCount = cartItems.length;
       updateCartItemCount();
-      
+
       // Re-render the cart contents
       renderCartContents();
     }
   });
 renderCartContents();
+
+renderHeaderFooter();

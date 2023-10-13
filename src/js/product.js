@@ -1,6 +1,8 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import { doc } from "prettier";
+import { renderHeaderFooter } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
 
 function addProductToCart(product) {
   // Creating an array to hold the carts items
@@ -19,11 +21,7 @@ function addProductToCart(product) {
   // Set the Local Storage to the new array
   setLocalStorage("so-cart", tempCart);
 
-  // Increment the item count
-  itemCount++;
-
-  // Update the cart item count and local storage
-  updateCartItemCount();
+  cartCount.set(tempCart.length);
 
   playCartAnimation();
 }
@@ -88,20 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
   GetProductDetails(productID);
 });
 
-// cart number of itens
-let itemCount = 0;
-
-function updateCartItemCount() {
-  const itemCountElement = document.getElementById("item-count");
-  itemCountElement.textContent = itemCount;
-  //get total of items in local storage
-  localStorage.setItem("cartItemCount", itemCount);
-}
-// get the local storage count when the page loads
-document.addEventListener("DOMContentLoaded", function () {
-  // item count from local storage or 0
-  itemCount = parseInt(localStorage.getItem("cartItemCount")) || 0;
-  updateCartItemCount();
-});
-
 // Fill the HTML for elements on the screen
+
+renderHeaderFooter();
