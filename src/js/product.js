@@ -25,6 +25,8 @@ async function addToCartHandler(e) {
 // Setting Product Detail Page Dynamically
 async function GetProductDetails(productID){
   const product = await findProductById(productID);
+  const discountValue = await calcDiscount(product);
+  console.log(discountValue)
   document.getElementById("ProductName").innerHTML = product.Name;
   document.getElementById("NameWithoutBrand").innerHTML = product.NameWithoutBrand;
   document.getElementById("Image").src = product.Image;
@@ -33,6 +35,8 @@ async function GetProductDetails(productID){
   document.getElementById("ColorName").innerHTML = product.Colors[0].ColorName;
   document.getElementById("DescriptionHtmlSimple").innerHTML = product.DescriptionHtmlSimple;
   document.getElementById("addToCart").setAttribute("data-id",String(productID));
+  document.getElementById("RetailPrice").innerHTML = product.SuggestedRetailPrice;
+  document.getElementById("Discount").innerHTML = discountValue.toFixed(2);
 }
 
 // add listener to Add to Cart button
@@ -45,5 +49,8 @@ document.addEventListener("DOMContentLoaded", function(){
   let productID = urlParams.get('productID');
   GetProductDetails(productID)
 });
+
+
+
 
 // Fill the HTML for elements on the screen
