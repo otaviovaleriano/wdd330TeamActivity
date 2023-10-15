@@ -51,6 +51,7 @@ async function GetProductDetails(productID) {
     document.getElementById("Image").src = product.Image;
     document.getElementById("Image").alt = product.Name;
     document.getElementById("ListPrice").innerHTML = product.ListPrice;
+    document.getElementById("Discount").innerHTML = "200";
     document.getElementById("ColorName").innerHTML =
       product.Colors[0].ColorName;
     document.getElementById("DescriptionHtmlSimple").innerHTML =
