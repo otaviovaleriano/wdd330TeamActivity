@@ -110,6 +110,19 @@ button {
   fill: gray;
 }
 
+/* Quantity of Items in the cart */
+#cart-count {
+  position: absolute;
+  top: 10px;
+  right: -5px;
+  background-color: #e6b281;
+  color: black;
+  border-radius: 50%;
+  padding: 3px 6px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
 /* End cart icon styles */
 
 .mission {
@@ -154,6 +167,34 @@ button {
 .card__name {
   font-size: 1em;
 }
+
+/* Discounted price */
+#discount-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#retail-price {
+  text-decoration: line-through;
+  font-size: 18px;
+  color: #cc000062;
+  border: 1px #303030;
+  max-width: fit-content;
+  max-height: 40%;
+}
+
+.discount-percentage {
+  font-size: 22px;
+  margin-top: 10px;
+  color: red;
+}
+
+#ListPrice {
+  font-size: 26px;
+  margin-top: 8px;
+  margin-left: -20px;
+}
+
 /* End product list card */
 
 .product-detail {
@@ -221,6 +262,49 @@ button {
   grid-column: 3;
 }
 
+/* Remove Item */
+.cart-card__remove {
+  font-size: 15px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+}
+
+.cart-card__remove:hover {
+  background-color: #cc0000;
+}
+
+/* Product Not found */
+
+.product-not-found h3 {
+  color: #cc0000;
+  text-align: center;
+}
+.product-not-found img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-bottom: 20px;
+  border: #cc0000 solid 2px;
+}
+
+.product-not-found button {
+  margin-bottom: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-not-found button:hover {
+  transform: scale(1.1);
+}
+
+.product-not-found a {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -238,4 +322,31 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/* CART TOTAL*/
+.hide {
+  display: none;
+}
+
+.AddToCartAnimation {
+  animation: CartAnimation 1s ease-in-out;
+}
+
+@keyframes CartAnimation {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
