@@ -1,6 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 import { setLocalStorage } from "./utils.mjs";
 import { renderHeaderFooter } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
 
 // (SAI) Function to check if there are items in the cart
 function checkCartItems() {
@@ -17,7 +18,6 @@ function checkCartItems() {
 
     for (let i = 0; i < cartItems.length; i++) {
       const product = cartItems[i];
-      console.log(product.FinalPrice); // Access the FinalPrice property
       totalAmount += product.FinalPrice;
     }
 
@@ -30,7 +30,6 @@ function checkCartItems() {
     cartFooter.appendChild(totalHTML);
   } else {
     // There are no items in the cart, you can perform other actions
-    console.log("The cart is empty.");
     cartFooter.classList.add("hide");
   }
 }
@@ -42,8 +41,10 @@ function renderCartContents() {
   //OS - cart.html error handling
   let cartItems = getLocalStorage("so-cart");
 
-  if (cartItems === null) {
+  if (cartItems === null || cartItems.length < 1) {
     cartItems = [];
+    const cartFooter = document.querySelector(".cart-footer");
+    cartFooter.classList.add("hide");
   }
 
   //const cartItems = getLocalStorage("so-cart");
@@ -89,6 +90,9 @@ document
 
       // Update the cart in localStorage
       setLocalStorage("so-cart", cartItems);
+
+      // Updates cartCount
+      cartCount.set(cartItems.length);
 
       // OS - updating itemCount in the cart based on local storage:
       // let itemCount = cartItems.length;

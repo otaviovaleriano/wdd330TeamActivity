@@ -11,8 +11,6 @@
     let itemCount = 0;
 
 function updateCartItemCount() {
-  const itemCountElement = document.getElementById('item-count');
-  itemCountElement.textContent = itemCount;
   //get total of items in local storage
   localStorage.setItem('cartItemCount', itemCount);
 }
