@@ -6,10 +6,10 @@ import { renderHeaderFooter } from "./utils.mjs";
 function checkCartItems() {
   // Check if there are items in local storage
   const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const cartFooter = document.querySelector(".cart-footer");
 
   if (cartItems.length > 0) {
     // There are items in the cart, show the cart footer
-    const cartFooter = document.querySelector(".cart-footer");
     cartFooter.classList.remove("hide");
 
     // Calculate the total amount
@@ -31,6 +31,7 @@ function checkCartItems() {
   } else {
     // There are no items in the cart, you can perform other actions
     console.log("The cart is empty.");
+    cartFooter.classList.add("hide");
   }
 }
 
@@ -90,8 +91,8 @@ document
       setLocalStorage("so-cart", cartItems);
 
       // OS - updating itemCount in the cart based on local storage:
-      itemCount = cartItems.length;
-      updateCartItemCount();
+      // let itemCount = cartItems.length;
+      // updateCartItemCount();
 
       // Re-render the cart contents
       renderCartContents();
