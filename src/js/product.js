@@ -53,7 +53,7 @@ async function GetProductDetails(productID) {
     document.getElementById("ProductName").innerHTML = product.Name;
     document.getElementById("NameWithoutBrand").innerHTML =
       product.NameWithoutBrand;
-    document.getElementById("Image").src = product.Image;
+    document.getElementById("Image").src = product.Images.PrimaryMedium;
     document.getElementById("Image").alt = product.Name;
     document.getElementById("ListPrice").innerHTML = product.ListPrice;
     document.getElementById("Discount").innerHTML = "- " + discount + "%";

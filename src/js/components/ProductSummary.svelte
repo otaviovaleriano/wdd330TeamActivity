@@ -3,10 +3,9 @@
 </script>
 
 <section>
-    <a href={"product_pages/index.html?productID="+(product.Id)}>
+    <a href={"/product_pages/index.html?productID="+(product.Id)}>
         <img
-        src={product.Image}
-        alt={product.NameWithoutBrand}/>
+        src={product.Images.PrimaryMedium} alt="Image of {product.Name}"/>
         <h3 class="card__brand">{product.Brand.Name}</h3>
         <h2 class="card__name">{product.NameWithoutBrand}</h2>
         <div id="discount-div">      

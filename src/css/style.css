@@ -152,9 +152,24 @@ button {
   max-width: 600px;
   margin: auto;
 }
-.products {
+.product {
   padding: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+.title {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.product a {
+  text-decoration: none;
+}
+
 .product-list {
   display: flex;
   flex-flow: row wrap;

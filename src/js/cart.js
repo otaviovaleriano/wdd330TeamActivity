@@ -58,7 +58,7 @@ function cartItemTemplate(item) {
   <a href="#" class="cart-card__remove" data-id="${item.Id}">X</a>
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimaryMedium}"
       alt="${item.Name}"
     />
   </a>
