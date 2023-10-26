@@ -339,7 +339,7 @@ button {
 /* Register for Giveaway */
 #registrationModal {
   position: fixed;
-  top: 90px;
+  top: 0px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -349,16 +349,18 @@ button {
 
 #registrationModal .modal-content {
   background-color: #fff;
+
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
 }
 
 #registrationModal #closeModal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  padding-left: 95%;
   font-size: 20px;
   cursor: pointer;
   color: #cc0000;
