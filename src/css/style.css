@@ -105,7 +105,7 @@ button {
   grid-row: 1/2;
   max-width: 30px;
   margin: auto;
-  margin-right:0;
+  margin-right: 0;
   margin-top: -3px;
 }
 
@@ -119,7 +119,6 @@ button {
 #grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
 }
 
 /* Quantity of Items in the cart */
@@ -141,7 +140,6 @@ button {
   grid-column: 1/2;
   grid-row: 1/2;
 }
-
 
 /* End cart icon styles */
 
@@ -252,10 +250,8 @@ button {
 
 .product-details span {
   font-weight: bold;
-  color: #ff5733; 
+  color: #ff5733;
 }
-
-
 
 .product-detail img {
   width: 100%;
@@ -338,6 +334,36 @@ button {
 
 .product-not-found a {
   text-decoration: none;
+}
+
+/* Register for Giveaway */
+#registrationModal {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+#registrationModal .modal-content {
+  background-color: #fff;
+
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+#registrationModal #closeModal {
+  padding-left: 95%;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cc0000;
 }
 
 @media screen and (min-width: 500px) {
