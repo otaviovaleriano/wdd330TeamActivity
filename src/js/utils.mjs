@@ -1,5 +1,6 @@
 import MainHeader from "./components/MainHeader.svelte";
 import MainFooter from "./components/MainFooter.svelte";
+import Checkout from "./components/Checkout.svelte"
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -36,6 +37,12 @@ export function renderHeaderFooter() {
   });
   new MainFooter({
     target: document.querySelector("#mainFooter"),
+  });
+}
+
+export function renderCheckout() {
+  new Checkout ({
+    target: document.querySelector('#checkoutForm')
   });
 }
 
