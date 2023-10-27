@@ -385,3 +385,38 @@ footer {
     transform: scale(1);
   }
 }
+
+
+/* CHECKOUT BUTTON */
+#checkoutButton {
+  margin-top: 10px;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+#checkoutButton:hover {
+  transform: scale(1.2);
+}
+
+/* FORM CSS */
+.checkout {
+  margin: 0 auto;
+  padding: 1rem;
+  border: 2px solid black;
+}
+
+.checkout label {
+  display: block;
+  font-size: .90rem;
+}
+
+.checkout input {
+  display: block;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+
+.checkoutDivider {
+  flex-direction: row;
+  display: flex;
+}
