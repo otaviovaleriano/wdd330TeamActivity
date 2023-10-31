@@ -16,6 +16,7 @@ function checkCartItems() {
     // Calculate the total amount
     let totalAmount = 0;
 
+    // Sets the totalAmount
     for (let i = 0; i < cartItems.length; i++) {
       const product = cartItems[i];
       totalAmount += product.FinalPrice;
