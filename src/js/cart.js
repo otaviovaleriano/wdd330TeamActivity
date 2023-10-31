@@ -48,9 +48,31 @@ function renderCartContents() {
     cartFooter.classList.add("hide");
   }
 
+  // Cart Quantities
+  let checkedItems = {};
+  let displayedItems = [];
+  let key = "";
+
+  for (let i = 0; i < cartItems.length; i++) {
+    let quantity = 0;
+    let tempObject = cartItems[i]
+    key = String(tempObject.Id);
+    if (key in checkedItems){
+      quantity = checkedItems[key] += 1;
+      tempObject.quantity = quantity;
+      displayedItems.pop(tempObject)
+      displayedItems.push(tempObject)
+    }
+    else{
+      tempObject["quantity"] = 1;
+      displayedItems.push(tempObject)
+      checkedItems = { ...checkedItems, [key]:1};
+    }
+  }
+
   //const cartItems = getLocalStorage("so-cart");
   // Added this
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  const htmlItems = displayedItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
 
@@ -67,7 +89,7 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty: ${item.quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
 
