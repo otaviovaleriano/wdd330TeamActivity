@@ -1,9 +1,10 @@
 <script>
    import { onMount } from "svelte";
    import { getLocalStorage } from "../utils.mjs";
+   import { setLocalStorage } from "../utils.mjs";
 
    let cartItems = getLocalStorage("so-cart");
-   const baseURL = "http://server-nodejs.cit.byui.edu:3000/checkout"
+   const baseURL = "http://server-nodejs.cit.byui.edu:3000/"
 
     let tax = 0;
     let total = 0;
@@ -38,22 +39,70 @@ function packageItems() {
       };
     });
     packagedItems.items = itemsSelected;
-    console.log(packagedItems);
     return packagedItems;
 }
 
 async function handleSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
+  var myForm = document.forms[0];
+  var chk_status = myForm.checkValidity();
+  myForm.reportValidity();
 
+  if(chk_status)
+  {
     packageItems();
+    try {
+      const res = await checkout();
+      if (res.message = 'Order Placed')
+      {
+        const PopupBox = document.getElementById("registrationModal");
+        PopupBox.classList.remove('hide')
+        const popUp = 
+        `<div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Order Placed Successfully!!</h2>
+            <p>Thank you for your money!</p>
+          </div>`
+        await PopupBox.insertAdjacentHTML('beforeend', popUp);
+        document.getElementById("closeModal").addEventListener("click", function () {
+            document.getElementById("registrationModal").style.display = "none";
+            document.location.href="/";
+        });
+        setLocalStorage("so-cart", []);
+      }
+    } catch (error)
+    {
+      for (let i = 0; i < Object.keys(error.message).length; i++) {
+        let key = Object.keys(error.message)[i];
+        let ErrorMessage = String(error.message[key]);
+        document.getElementById("errorLog").insertAdjacentHTML('beforeend', '<div id="errorBox"><text class="error">' + ErrorMessage + '</text> <text>X</text></div>');
+        const ErrorBox = document.getElementById("errorBox");
+        ErrorBox.addEventListener("click", function () {
+          ErrorBox.remove()
+        });
+      }
+    }
+  }
+}
 
-    const response = await fetch(baseURL, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(packagedItems)
-    });
+async function convertToJson(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    const errors = await res.json();
+    throw { name: 'servicesError', message: errors };
+  }
+}
+
+export async function checkout() {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(packagedItems),
+  };
+  return await fetch(baseURL + "checkout/", options).then(convertToJson);
 }
 
 function init()
@@ -96,7 +145,6 @@ function calculateShipping()
 function calculateTax()
 {
   tax = (itemSubtotal * 0.06).toFixed(2);
-  console.log(tax)
  }
 
 function calculateItemOrderTotal()
@@ -113,44 +161,47 @@ init()
 </script>
   
 <section class="checkout">
+  <div id="errorLog">
+
+  </div>
     <h2>Review & Place your Order</h2>
 
   <form action="">
   <div>
   <label for="fname">First Name:</label>
-  <input type="text" name="fname" id="fname">
+  <input type="text" required ="fname" id="fname" value="matthew">
 </div>
 <div>
   <label for= "lname">Last Name:</label>
-  <input type="text" name="lname" id="lname">
+  <input type="text" required name="lname" id="lname" value="scoresby">
 </div>
 <div>
   <label for="street">Street:</label>
-  <input type="text" name="street" id="street">
+  <input type="text" required name="street" id="street" value="111">
 </div>
 <div>
   <label for="city">City:</label>
-  <input type="text" name="city" id="city">
+  <input type="text" required name="city" id="city" value="Howard">
 </div>
 <div>
   <label for="state">State:</label>
-  <input type="text" name="state" id="state">
+  <input type="text" required name="state" id="state" value="Idaho">
 </div>
 <div>
   <label for="zip">Zip:</label>
-  <input type="text" name="zip" id="zip">
+  <input type="text" required name="zip" id="zip" value="83440">
 </div>
 <div>
   <label for="cardNumber">Card Number:</label>
-  <input type="text" name="cardNumber" id="cardNumber">
+  <input type="text" required name="cardNumber" id="cardNumber" value="1234123412341234">
 </div>
 <div>
   <label for="expiration">Expiration:</label>
-  <input type="text" name="expiration" id="expiration">
+  <input type="text" required name="expiration" id="expiration" value="10/25">
 </div>
 <div>
   <label for="code">Security Code:</label>
-  <input type="text" name="code" id="code">
+  <input type="text" required name="code" id="code" value="123">
 </div>
     
 </form>

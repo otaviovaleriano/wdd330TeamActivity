@@ -412,7 +412,6 @@ footer {
   }
 }
 
-
 /* CHECKOUT BUTTON */
 #checkoutButton {
   margin-top: 10px;
@@ -433,7 +432,7 @@ footer {
 
 .checkout label {
   display: block;
-  font-size: .90rem;
+  font-size: 0.9rem;
 }
 
 .checkout input {
@@ -445,4 +444,25 @@ footer {
 .checkoutDivider {
   flex-direction: row;
   display: flex;
+}
+
+#errorLog {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 10px;
+}
+
+#errorBox {
+  display: grid;
+  height: 50px;
+  background-color: rgba(255, 0, 0, 0.3);
+  padding-top: 15px;
+  border: 2px solid rgba(255, 0, 0, 0.7);
+  grid-template-columns: 90% 10%;
+  font-weight: bold;
+}
+
+.error {
+  padding-left: 10px;
+  text-align: left;
 }
