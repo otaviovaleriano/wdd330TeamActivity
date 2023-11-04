@@ -446,23 +446,31 @@ footer {
   display: flex;
 }
 
-#errorLog {
-  display: grid;
-  grid-auto-flow: row;
-  grid-row-gap: 10px;
+#checkoutButton {
+  margin-top: 10px;
+  border-radius: 10px;
+  transition: transform 0.2s;
 }
 
-#errorBox {
-  display: grid;
-  height: 50px;
-  background-color: rgba(255, 0, 0, 0.3);
-  padding-top: 15px;
-  border: 2px solid rgba(255, 0, 0, 0.7);
-  grid-template-columns: 90% 10%;
-  font-weight: bold;
-}
 
-.error {
-  padding-left: 10px;
-  text-align: left;
+#newsletter{
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 1fr 40px;
+  padding: 20px;
+  margin: 20px;
+}
+#newslettertext{
+  grid-column: 1/3;
+  grid-row: 1/2;
+  text-align: center;
+}
+#newsletterinput{
+  grid-column: 1/2;
+  grid-row: 2/3;
+  text-align: center;
+}
+#newsletterbutton{
+  grid-column: 2/3;
+  grid-row: 2/3;
 }
