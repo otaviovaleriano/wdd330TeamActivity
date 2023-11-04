@@ -474,3 +474,24 @@ footer {
   grid-column: 2/3;
   grid-row: 2/3;
 }
+
+#errorLog {
+  display: grid;
+  grid-auto-flow: row;
+  grid-row-gap: 10px;
+}
+
+#errorBox {
+  display: grid;
+  height: 50px;
+  background-color: rgba(255, 0, 0, 0.3);
+  padding-top: 15px;
+  border: 2px solid rgba(255, 0, 0, 0.7);
+  grid-template-columns: 90% 10%;
+  font-weight: bold;
+}
+
+.error {
+  padding-left: 10px;
+  text-align: left;
+}
