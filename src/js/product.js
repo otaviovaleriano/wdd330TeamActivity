@@ -29,6 +29,20 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
   const product = await findProductById(e.target.dataset.id);
   addProductToCart(product);
+
+  const PopupBox = document.getElementById("registrationModal");
+  PopupBox.classList.remove("hide");
+
+  const popUp = `<div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Item Added Successfully!!</h2>
+      <p>Go To Cart to See Item!</p>
+    </div>`;
+  await PopupBox.insertAdjacentHTML("beforeend", popUp);
+
+  document.getElementById("closeModal").addEventListener("click", function () {
+    document.getElementById("registrationModal").style.display = "none";
+  });
 }
 
 // Adds the addtocart animation to the cart icon then removes it after 1 second
@@ -41,13 +55,15 @@ async function playCartAnimation() {
 }
 
 async function CalculateDiscountPercentage(product) {
-  return (100 - ( product.FinalPrice / product.SuggestedRetailPrice * 100).toFixed(0));
+  return (
+    100 - ((product.FinalPrice / product.SuggestedRetailPrice) * 100).toFixed(0)
+  );
 }
 
 // Setting Product Detail Page Dynamically
 async function GetProductDetails(productID) {
   const product = await findProductById(productID);
-  const discount = await CalculateDiscountPercentage(product)
+  const discount = await CalculateDiscountPercentage(product);
   // This will run if the product is found
   if (product != undefined) {
     document.getElementById("ProductName").innerHTML = product.Name;
@@ -57,7 +73,8 @@ async function GetProductDetails(productID) {
     document.getElementById("Image").alt = product.Name;
     document.getElementById("ListPrice").innerHTML = product.ListPrice;
     document.getElementById("Discount").innerHTML = "- " + discount + "%";
-    document.getElementById("retail-price").innerText = "List Price: $" + product.SuggestedRetailPrice;
+    document.getElementById("retail-price").innerText =
+      "List Price: $" + product.SuggestedRetailPrice;
     document.getElementById("ColorName").innerHTML =
       product.Colors[0].ColorName;
     document.getElementById("DescriptionHtmlSimple").innerHTML =

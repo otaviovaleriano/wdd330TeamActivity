@@ -412,7 +412,6 @@ footer {
   }
 }
 
-
 /* CHECKOUT BUTTON */
 #checkoutButton {
   margin-top: 10px;
@@ -433,7 +432,7 @@ footer {
 
 .checkout label {
   display: block;
-  font-size: .90rem;
+  font-size: 0.9rem;
 }
 
 .checkout input {
@@ -446,6 +445,7 @@ footer {
   flex-direction: row;
   display: flex;
 }
+
 #checkoutButton {
   margin-top: 10px;
   border-radius: 10px;

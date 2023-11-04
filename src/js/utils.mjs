@@ -1,6 +1,6 @@
 import MainHeader from "./components/MainHeader.svelte";
 import MainFooter from "./components/MainFooter.svelte";
-import Checkout from "./components/Checkout.svelte"
+import Checkout from "./components/Checkout.svelte";
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -41,8 +41,8 @@ export function renderHeaderFooter() {
 }
 
 export function renderCheckout() {
-  new Checkout ({
-    target: document.querySelector('#checkoutForm')
+  new Checkout({
+    target: document.querySelector("#checkoutForm"),
   });
 }
 
@@ -51,3 +51,5 @@ export function getParam(param) {
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);
 }
+
+export function alertMessage(message, scroll = true) {}
