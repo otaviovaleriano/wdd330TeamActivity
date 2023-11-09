@@ -53,3 +53,4 @@ export function getParam(param) {
 }
 
 export function alertMessage(message, scroll = true) {}
+

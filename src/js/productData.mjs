@@ -17,14 +17,14 @@ function convertToJson(res) {
 export async function getData(category) {
   const response = await fetch(baseURL + `products/search/${category}`);
   const data = await convertToJson(response);
-  // console.log(data.Result)
+  console.log(data.Result)
   return data.Result; 
 }
 
 export async function findProductById(id) {
   const response = await fetch(baseURL + `product/${id}`);
   const data2 = await convertToJson(response);
-  // console.log(data.Result)
+  console.log(data2.Result)
   return data2.Result;
 }
 
