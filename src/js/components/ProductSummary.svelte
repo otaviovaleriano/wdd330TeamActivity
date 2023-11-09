@@ -4,7 +4,6 @@
 
 <section>
     <a href={"/product_pages/index.html?productID="+(product.Id)}>
-        <!-- <img src={product.Images.PrimaryMedium} alt="Image of {product.Name}"/> -->
         <img id="product-img"
             src={product.Images.PrimaryMedium} 
             srcset={`
