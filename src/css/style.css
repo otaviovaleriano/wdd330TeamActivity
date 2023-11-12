@@ -495,3 +495,30 @@ footer {
   padding-left: 10px;
   text-align: left;
 }
+
+#OrderBox {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+
+.Order {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  background-color: rgb(216, 216, 216);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.OrderText {
+  margin: 0;
+  text-align: center;
+}
+
+#OrderTitle {
+  background-color: rgb(97, 97, 97);
+  color: white;
+}
