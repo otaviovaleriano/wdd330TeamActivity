@@ -4,6 +4,7 @@ import { doc } from "prettier";
 import { renderHeaderFooter } from "./utils.mjs";
 import { cartCount } from "./stores.mjs";
 
+// Add product to cart
 function addProductToCart(product) {
   // Creating an array to hold the carts items
 

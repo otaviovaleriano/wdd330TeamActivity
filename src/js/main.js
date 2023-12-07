@@ -7,10 +7,15 @@ import { renderHeaderFooter } from "./utils.mjs";
 // });
 
 // Call to action-register with site
-if (!localStorage.getItem("visitedBefore")) {
-  document.getElementById("registrationModal").style.display = "block";
-}
+// Check if user has visited before
+// If not, show modal
+// If so, do nothing
 
+if (!localStorage.getItem("visitedBefore")) {
+  console.log("here")
+  document.getElementById("registrationModal").style.display = "block";
+  window.open('./registration.html', '_blank');
+}
 document.querySelector(".close").addEventListener("click", function () {
   document.getElementById("registrationModal").style.display = "none";
 });
