@@ -32,6 +32,21 @@
     sortProducts();
   }
   console.log(handleSortChange);
+
+  // Function to get random product recommendations
+function getRandomRecommendations(products, count) {
+  // Clone the array to avoid modifying the original
+  const clonedProducts = [...products];
+
+  // Shuffle the array randomly
+  for (let i = clonedProducts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [clonedProducts[i], clonedProducts[j]] = [clonedProducts[j], clonedProducts[i]];
+  }
+
+  // Take the first 'count' products as recommendations
+  return clonedProducts.slice(0, count);
+}
 </script>
 
 <h2>Top Products: {category}</h2>
@@ -51,4 +66,13 @@
       <li class="product-card"><ProductSummary {product} /></li>
     {/each}
   </ul>
+
+
+<!-- Recommendations Section -->
+<h3>Recommended Products</h3>
+<ul class="recommendations-list">
+  {#each getRandomRecommendations(products, 3) as recommendedProduct}
+  <li class="product-card"><ProductSummary product={recommendedProduct} /></li>
+  {/each}
+</ul>
 {/if}
