@@ -1,5 +1,5 @@
 <script>
-  import { cartCount } from "../stores.mjs"; 
+  import { cartCount } from "../stores.mjs";
   import Breadcrumbs from "./Breadcrumbs.svelte";
 
   const isHomePage = window.location.pathname === "/";
@@ -10,7 +10,7 @@
   <a href="../index.html"> Sleep<span class="highlight">Outside</span></a>
 </div>
 {#if !isHomePage}
-<Breadcrumbs />
+  <Breadcrumbs />
 {/if}
 
 <div id="grid">
@@ -40,7 +40,7 @@
         <text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
       </svg>
     </a>
-   
+
     <span id="cart-count"> {$cartCount} </span>
   </div>
   <span class="cart-footer" />

@@ -201,6 +201,26 @@ button {
   font-size: 1em;
 }
 
+#filters {
+  grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
+}
+
+.search-form {
+ grid-column: 1/2;
+
+ text-align: right;
+}
+.search-form input {
+  width: 100%;
+  font-size: 20px;
+}
+
+.sort-selectors{
+  grid-column: 3/4;
+  font-size: 22px;
+}
+
 /* Discounted price */
 #discount-div {
   display: grid;
