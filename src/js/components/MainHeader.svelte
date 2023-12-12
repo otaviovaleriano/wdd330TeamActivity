@@ -1,11 +1,18 @@
 <script>
-  import { cartCount } from "../stores.mjs";
+  import { cartCount } from "../stores.mjs"; 
+  import Breadcrumbs from "./Breadcrumbs.svelte";
+
+  const isHomePage = window.location.pathname === "/";
 </script>
 
 <div class="logo">
   <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
   <a href="../index.html"> Sleep<span class="highlight">Outside</span></a>
 </div>
+{#if !isHomePage}
+<Breadcrumbs />
+{/if}
+
 <div id="grid">
   <div class="cart" id="cart">
     <a href="../cart/index.html">
